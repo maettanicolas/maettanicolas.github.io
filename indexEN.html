@@ -580,9 +580,13 @@
 
         #toast #desc {
             color: #fff;
-            padding: 16px;
-            overflow: hidden;
-            white-space: nowrap
+    padding: 16px;
+    overflow: hidden;
+    text-align: center; /* Alinea el texto horizontalmente en el centro */
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100%;
         }
 
         #toast.show {
@@ -662,7 +666,7 @@
     
                 // Reinicia el widget de reCAPTCHA después de ocultar el mensaje
                 grecaptcha.reset();
-            }, 0);
+            }, 4000);
         }
     
         function sendMail() {
