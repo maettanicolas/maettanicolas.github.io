@@ -17,6 +17,7 @@
     <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body><i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
@@ -470,10 +471,17 @@
                                 <div class="text-center"><button id="submitBtn" type="button"
                                         onclick="sendMail()">Enviar</button>
                                     <div class="loader" id="loader"></div>
+                                    <div class="g-recaptcha" data-sitekey="6LfFgcEmAAAAAKUncmROkl7MjYmueJidGVExaNPQ"></div>
                                 </div>
+
                             </div>
                     </div>
     </main>
+    <script>
+        function onSubmit(token) {
+          document.getElementById("demo-form").submit();
+        }
+      </script>
     <footer id="footer">
         <div class="container">
             <div class="copyright">&copy; Copyright<strong><span>iPortfolio</span></strong></div>
@@ -626,10 +634,85 @@
 
 
     </style>
+    
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com/dist/email.min.js"></script>
-    <script
-        type="text/javascript">(function () {
-                emailjs.init("Ae1u6iswqyVA9BEek")
-            })(); function launchToast() { var x = document.getElementById("toast"); x.className = "show"; setTimeout(function () { x.className = x.className.replace("show", "") }, 4000) } function sendMail() { var name = document.getElementById("name").value; var email = document.getElementById("email").value; var subject = document.getElementById("subject").value; var message = document.getElementById("message").value; if (name.trim() === "") { document.getElementById("name").focus(); return } if (email.trim() === "") { document.getElementById("email").focus(); return } if (subject.trim() === "") { document.getElementById("subject").focus(); return } if (message.trim() === "") { document.getElementById("message").focus(); return } var params = { name: name, email: email, subject: subject, message: message }; const serviceID = "service_lxthpw4"; const templateID = "template_ula30il"; var loader = document.getElementById("loader"); loader.style.display = "block"; var submitButton = document.getElementById("submitBtn"); submitButton.classList.add("loading"); emailjs.send(serviceID, templateID, params).then(function (res) { document.getElementById("name").value = ""; document.getElementById("email").value = ""; document.getElementById("subject").value = ""; document.getElementById("message").value = ""; console.log(res); loader.style.display = "none"; submitButton.classList.remove("loading"); launchToast() }).catch(function (err) { console.log(err) }) }</script>
+    
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("Ae1u6iswqyVA9BEek");
+        })();
+    
+        function launchToast() {
+            var x = document.getElementById("toast");
+            x.className = "show";
+            setTimeout(function () {
+                x.className = x.className.replace("show", "");
+            }, 4000);
+        }
+    
+        function sendMail() {
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var subject = document.getElementById("subject").value;
+            var message = document.getElementById("message").value;
+    
+            // Agrega el código para verificar que el recaptcha se haya resuelto
+            var recaptchaResponse = grecaptcha.getResponse();
+    
+            if (name.trim() === "") {
+                document.getElementById("name").focus();
+                return;
+            }
+            if (email.trim() === "") {
+                document.getElementById("email").focus();
+                return;
+            }
+            if (subject.trim() === "") {
+                document.getElementById("subject").focus();
+                return;
+            }
+            if (message.trim() === "") {
+                document.getElementById("message").focus();
+                return;
+            }
+    
+            // Verifica si el recaptcha se resolvió correctamente
+            if (!recaptchaResponse) {
+                alert("Por favor, resuelve el recaptcha antes de enviar el formulario.");
+                return;
+            }
+    
+            var params = {
+                name: name,
+                email: email,
+                subject: subject,
+                message: message,
+                // Agrega el recaptchaResponse a los parámetros
+                recaptchaResponse: recaptchaResponse
+            };
+    
+            const serviceID = "service_lxthpw4";
+            const templateID = "template_ula30il";
+            var loader = document.getElementById("loader");
+            loader.style.display = "block";
+            var submitButton = document.getElementById("submitBtn");
+            submitButton.classList.add("loading");
+    
+            // Realiza la solicitud POST al servidor de EmailJS incluyendo el recaptchaResponse
+            emailjs.send(serviceID, templateID, params).then(function (res) {
+                document.getElementById("name").value = "";
+                document.getElementById("email").value = "";
+                document.getElementById("subject").value = "";
+                document.getElementById("message").value = "";
+                console.log(res);
+                loader.style.display = "none";
+                submitButton.classList.remove("loading");
+                launchToast();
+            }).catch(function (err) {
+                console.log(err);
+            });
+        }
+    </script>
+    
             </body>
             </html >
