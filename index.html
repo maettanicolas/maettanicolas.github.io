@@ -637,7 +637,7 @@
     </style>
     
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com/dist/email.min.js"></script>
-    
+
     <script type="text/javascript">
         (function () {
             emailjs.init("Ae1u6iswqyVA9BEek");
@@ -648,6 +648,9 @@
             x.className = "show";
             setTimeout(function () {
                 x.className = x.className.replace("show", "");
+    
+                // Reinicia el widget de reCAPTCHA después de ocultar el mensaje
+                grecaptcha.reset();
             }, 4000);
         }
     
@@ -679,7 +682,7 @@
     
             // Verifica si el recaptcha se resolvió correctamente
             if (!recaptchaResponse) {
-                alert("Por favor, resuelve el recaptcha antes de enviar el formulario.");
+                alert("Por favor, resuelve el reCAPTCHA antes de enviar el formulario.");
                 return;
             }
     
@@ -714,6 +717,7 @@
             });
         }
     </script>
+    
     
             </body>
             </html >
