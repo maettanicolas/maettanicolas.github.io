@@ -468,13 +468,14 @@
                                     <div class="error-message"></div>
                                     <div class="sent-message">Tu mensaje ha sido enviado. ¡Gracias!</div>
                                 </div>
-                                <div class="text-center"><button id="submitBtn" type="button"
-                                        onclick="sendMail()">Enviar</button>
-                                    <div class="loader" id="loader"></div>
-                                    <div class="mt-4 d-flex flex-column align-items-center">
+                                  <div class=" mb-3  d-flex flex-column align-items-center">
                                         <div class="g-recaptcha" data-sitekey="6LfFgcEmAAAAAKUncmROkl7MjYmueJidGVExaNPQ"></div>
                                 </div>
 
+                                <div class="text-center"><button id="submitBtn" type="button"
+                                        onclick="sendMail()">Enviar</button>
+                                    <div class="loader" id="loader"></div>
+                                  
                             </div>
                     </div>
     </main>
@@ -661,7 +662,7 @@
     
                 // Reinicia el widget de reCAPTCHA después de ocultar el mensaje
                 grecaptcha.reset();
-            }, 2000);
+            }, 0);
         }
     
         function sendMail() {

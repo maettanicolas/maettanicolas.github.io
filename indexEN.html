@@ -17,6 +17,7 @@
     <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body><i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
@@ -482,10 +483,15 @@
                                     <div class="error-message"></div>
                                     <div class="sent-message">Your message has been sent, thank you!</div>
                                 </div>
-                                <div class="text-center"><button id="submitBtn" type="button"
-                                        onclick="sendMail()">Send</button>
-                                    <div class="loader" id="loader"></div>
-                                </div>
+                                <div class=" mb-3  d-flex flex-column align-items-center">
+                                    <div class="g-recaptcha" data-sitekey="6LfFgcEmAAAAAKUncmROkl7MjYmueJidGVExaNPQ"></div>
+                            </div>
+
+                            <div class="text-center"><button id="submitBtn" type="button"
+                                    onclick="sendMail()">Send</button>
+                                <div class="loader" id="loader"></div>
+                              
+                        </div>
                             </div>
                     </div>
     </main>
@@ -659,7 +665,7 @@
     
                 // Reinicia el widget de reCAPTCHA después de ocultar el mensaje
                 grecaptcha.reset();
-            }, 2000);
+            }, 0);
         }
     
         function sendMail() {
