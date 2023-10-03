@@ -520,7 +520,7 @@
         <div id="desc">Your message has been sent, thank you!</div>
     </div>
     <style>
-     @keyframes spin {
+   @keyframes spin {
             0% {
                 transform: rotate(0)
             }
@@ -548,7 +548,7 @@
 
         #toast {
             visibility: hidden;
-            max-width: 100px;
+            max-width: 50px;
             height: 50px;
             margin: auto;
             background-color: #28646c;
@@ -580,14 +580,9 @@
 
         #toast #desc {
             color: #fff;
-    padding: 16px;
-    overflow: hidden;
-    text-align: center; /* Alinea el texto horizontalmente en el centro */
-    display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    height: 100%;
-
+            padding: 16px;
+            overflow: hidden;
+            white-space: nowrap
         }
 
         #toast.show {
